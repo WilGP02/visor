@@ -1,0 +1,55 @@
+server:
+  port: ${vcap.application.port:8091}
+  contextPath: /lambda-visor
+  session:
+    cookie:
+
+spring:
+  application:
+    name: visorhc-lambda-visor
+  jmx:
+    default-domain: visorhc-lambda-visor
+  profiles: default
+
+  datasource:
+    url: jdbc:oracle:thin:@10.41.190.226:1521:AMZDBQAS
+    username: VISORHC
+    password: v1sor2019$$
+    testOnBorrow: true
+    removeAbandonedTimeout: 1800
+    removeAbandoned: true
+    validationQuery: SELECT 1 FROM DUAL
+    logAbandoned: true
+    minEvictableIdleTimeMillis: 60000
+    defaultReadOnly: false
+    maxWait: 60000
+    maxIdle: 4
+    minIdle: 0
+    maxActive: 50
+    initialSize: 1
+
+  jpa:
+    database-platform: org.hibernate.dialect.Oracle10gDialect
+    show-sql: true
+    generate-ddl: true
+    open-in-view: true
+
+    hibernate:
+      ddl-auto: validate
+      naming-strategy: org.hibernate.cfg.DefaultNamingStrategy
+
+vhc:
+  urisecurity:
+    checktoken: http://10.41.190.223:8080/oauth2-server-ptm/oauth/check_token
+    clientId: ptm-portal-medico-app
+    clientSecret: B95B75295F3D3E2296A3DA02AC8EF932ED33B7CC47727D74F0B02004330AAA87
+
+datasource_jndi:
+    jndi_trn: java:/VisorHCTDS  
+
+datasource_jdbc:
+    jdbc_trn_url: jdbc:oracle:thin:@10.41.1.253:1521:HIS510
+    jdbc_trn_drive: oracle.jdbc.OracleDriver
+    jdbc_trn_username: USRAPIPROVHC
+    jdbc_trn_password: USRAPIPROVHC
+ 
